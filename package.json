@@ -1,0 +1,21 @@
+{
+  "name": "room-gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-dev": "npx postcss ./src/scss/tailwind-input.scss -o ./css/styles.css",
+    "watch": "npx postcss ./src/scss/tailwind-input.scss -o ./dist/css/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-nesting": "^12.0.0",
+    "tailwindcss": "^3.3.3"
+  }
+}

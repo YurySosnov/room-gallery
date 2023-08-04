@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Room Gallery</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/lib/vue.global.3.3.4.js"></script>
+</head>
+<body>
+<div id="room-gallery" class="room-gallery">
+    <div class="rg-wrapper">
+        <div id="rg-room" class="rg-room"
+             :class="'r-' + ratio" :style="{backgroundImage: 'url(' + imageSrc + ')'}"
+             @mouseup="meterDragEnd($event); meterResizeEnd($event);"
+             @mouseleave="meterDragEnd($event); meterResizeEnd($event);"
+             @mousemove="moveOnRoom($event);">
+            <div id="rg-meter"
+                 class="rg-meter"
+                 :style="{
+                    width: meter.w + '%',
+                    left: meter.x + '%',
+                    top: meter.y + '%',
+                 }"
+                 @mousedown="meterDragStart($event, index)">
+                <div class="inner">
+                    <button class="text">{{meterValue}} cm,
+                        x: {{meter.x}},
+                        y: {{meter.y}},
+                        w: {{meter.w}}
+                    </button>
+                    <div class="resize">
+                        <div class="rs lt" @mousedown="meterResizeStart($event,'lt')"></div>
+                        <div class="rs rt" @mousedown="meterResizeStart($event,'rt')"></div>
+                        <div class="rs lb" @mousedown="meterResizeStart($event,'lb')"></div>
+                        <div class="rs rb" @mousedown="meterResizeStart($event,'rb')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rg-setup">
+            <div class="rg-ratio-change">
+                <label>
+                    <select id="rg-ratio"
+                            class="rg-select"
+                            name="rg-ratio"
+                            v-model="ratio">
+                        <option v-for="r in ratios"
+                                :value="r">
+                            {{r}}
+                        </option>
+                    </select>
+                </label>
+            </div>
+            <div class="rg-perspective-change">
+                <label>
+                    <select id="rg-perspective"
+                            class="rg-select"
+                            name="rg-ratio"
+                            v-model="perspective">
+                        <option v-for="p in perspectives"
+                                :value="p">
+                            {{p}}
+                        </option>
+                    </select>
+                </label>
+            </div>
+            <label>
+                <input id="rg-meter-value"
+                       class="rg-input-text w-16"
+                       type="text"
+                       v-model="meterValue">
+            </label>
+            <div class="rg-load-image">
+                <label for="rg-room-image"
+                       class="rg-button">
+                    Photo
+                </label>
+                <input id="rg-room-image"
+                       type="file" name=""
+                       accept="image/png, image/jpeg"
+                       @change="readImage($event)">
+            </div>
+            <div class="rg-reset">
+                <button class="button" @click="reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/room-gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+:root {
+  --transition-time: .2s;
+}
+
+.room-gallery {
+  @apply p-4;
+  .rg-wrapper {
+    @apply w-full relative flex flex-row;
+    &:hover {
+      .rg-setup,
+      .rg-meter {
+        @apply opacity-100;
+      }
+    }
+  }
+  .rg-button {
+    @apply bg-primary h-10 p-2 text-center flex justify-center items-center rounded-lg;
+  }
+
+  .rg-select {
+    @apply p-2 rounded-lg outline-none;
+    &:active,
+    &:focus {
+      @apply outline-none;
+    }
+  }
+
+  .rg-input-text {
+    @apply p-2 rounded-lg outline-none;
+    &:active,
+    &:focus {
+      @apply outline-none;
+    }
+  }
+
+  .rg-room {
+    @apply w-full h-0 relative bg-lightgrey bg-center bg-no-repeat;
+    background-size: 100%;
+    &.r-21\/9 {
+      @apply pb-9/21;
+    }
+    &.r-18\/9 {
+      @apply pb-1/2;
+    }
+
+    &.r-16\/10 {
+      @apply pb-10/16;
+    }
+
+    &.r-16\/9 {
+      @apply pb-9/16;
+    }
+
+    &.r-4\/3 {
+      @apply pb-3/4;
+    }
+
+    &.r-3\/2 {
+      @apply pb-2/3;
+    }
+
+    &.r-1\/1 {
+      @apply pb-1/1;
+    }
+  }
+
+  .rg-setup {
+    @apply opacity-0 absolute top-4 left-4 flex justify-center items-center gap-4 flex-wrap;
+    width: calc(100% - 2rem);
+    transition: opacity var(--transition-time);
+  }
+
+  .rg-ratio-change {
+    @apply flex gap-4 flex-nowrap;
+    .button {
+      @apply w-20;
+    }
+  }
+
+  .rg-load-image {
+    input {
+      @apply hidden;
+    }
+  }
+
+  .rg-meter {
+    @apply absolute h-0  cursor-move;
+    transition: opacity var(--transition-time);
+    .inner {
+      @apply absolute w-full h-0 pb-1/1 left-0 top-0 border border-white-50 bg-black-10;
+      transform: translate(-50%, -50%);
+      .text {
+        @apply absolute left-2 top-2 text-white text-12px font-semibold;
+      }
+      .resize {
+        @apply absolute w-full h-full top-0 left-0;
+      }
+      .rs {
+        @apply absolute w-4 h-4 border border-white-50 bg-white-25 rounded-full;
+        transform: translate(-50%, -50%);
+      }
+      .lt { @apply left-0 top-0 cursor-nw-resize;}
+      .ct { @apply left-1/2 top-0 cursor-n-resize;}
+      .rt { @apply left-1/1 top-0 cursor-ne-resize;}
+
+      .lc { @apply left-0 top-1/2 cursor-w-resize;}
+      .cc { @apply left-1/2 top-1/2 cursor-move;}
+      .rc { @apply left-1/1 top-1/2 cursor-e-resize;}
+
+      .lb { @apply left-0 top-1/1 cursor-sw-resize;}
+      .cb { @apply left-1/2 top-1/1 cursor-s-resize;}
+      .rb { @apply left-1/1 top-1/1 cursor-se-resize;}
+    }
+  }
+}
+
