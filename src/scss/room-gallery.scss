@@ -3,9 +3,8 @@
 }
 
 .room-gallery {
-  @apply p-4;
   .rg-wrapper {
-    @apply w-full relative flex flex-row;
+    @apply w-full relative flex flex-row overflow-hidden;
     &:hover {
       .rg-setup,
       .rg-meter {
@@ -14,7 +13,7 @@
     }
   }
   .rg-button {
-    @apply bg-primary h-10 p-2 text-center flex justify-center items-center rounded-lg;
+    @apply bg-primary h-10 px-4 py-2 text-center flex justify-center items-center rounded-lg cursor-pointer;
   }
 
   .rg-select {
@@ -65,8 +64,7 @@
   }
 
   .rg-setup {
-    @apply opacity-0 absolute top-4 left-4 flex justify-center items-center gap-4 flex-wrap;
-    width: calc(100% - 2rem);
+    @apply opacity-0 absolute top-0 left-0 p-4 flex justify-center items-center gap-4 flex-wrap bg-black-15 w-full backdrop-blur;
     transition: opacity var(--transition-time);
   }
 
@@ -84,7 +82,7 @@
   }
 
   .rg-meter {
-    @apply absolute h-0  cursor-move;
+    @apply opacity-0 absolute h-0 cursor-move;
     transition: opacity var(--transition-time);
     .inner {
       @apply absolute w-full h-0 pb-1/1 left-0 top-0 border border-white-50 bg-black-10;
@@ -110,6 +108,13 @@
       .lb { @apply left-0 top-1/1 cursor-sw-resize;}
       .cb { @apply left-1/2 top-1/1 cursor-s-resize;}
       .rb { @apply left-1/1 top-1/1 cursor-se-resize;}
+    }
+  }
+
+  .rg-input {
+    @apply flex flex-col justify-start items-start;
+    .label {
+      @apply block w-full h-4 mb-2 text-12px font-semibold text-white;
     }
   }
 }

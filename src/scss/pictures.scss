@@ -1,0 +1,24 @@
+.rg-pictures {
+  @apply relative flex justify-start items-start gap-4 p-4;
+}
+
+.rg-picture-container {
+  @apply w-40 relative;
+}
+
+.rg-picture {
+  @apply relative w-full h-0 bg-cover;
+}
+
+.rg-picture-setup {
+
+}
+
+.rg-room-picture-wrapper {
+  @apply absolute left-1/2 top-1/2 cursor-move;
+  transform: translate(-50%,-50%);
+}
+
+.rg-room-picture {
+  @apply relative w-full h-0 bg-cover;
+}
