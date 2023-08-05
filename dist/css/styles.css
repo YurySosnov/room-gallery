@@ -499,6 +499,7 @@ video {
   display: flex;
   width: 100%;
   flex-direction: row;
+  flex-wrap: wrap;
   overflow: hidden;
 }
 .room-gallery .rg-wrapper:hover .rg-setup,
@@ -519,12 +520,22 @@ video {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+    line-height: 1;
+}
+.room-gallery .rg-button-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .room-gallery .rg-select {
   border-radius: 0.5rem;
   padding: 0.5rem;
   outline: 2px solid transparent;
   outline-offset: 2px;
+    background-image: linear-gradient(to bottom, #EEEEEE, #CCCCCC);
 }
 .room-gallery .rg-select:active,
     .room-gallery .rg-select:focus {
@@ -536,21 +547,32 @@ video {
   padding: 0.5rem;
   outline: 2px solid transparent;
   outline-offset: 2px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, .2);
 }
 .room-gallery .rg-input-text:active,
     .room-gallery .rg-input-text:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
+.room-gallery .rg-room-wrapper {
+  position: relative;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+
+  .room-gallery .rg-room-wrapper {
+    width: 66.666667%;
+  }
+}
 .room-gallery .rg-room {
   position: relative;
   height: 0rem;
-  width: 100%;
   --tw-bg-opacity: 1;
   background-color: rgb(245 246 244 / var(--tw-bg-opacity));
-  background-position: center;
   background-repeat: no-repeat;
+  width: 100%;
     background-size: 100%;
+    background-position: center 0;
 }
 .room-gallery .rg-room.r-21\/9 {
   padding-bottom: 42.857143%;
@@ -574,22 +596,36 @@ video {
   padding-bottom: 100%;
 }
 .room-gallery .rg-setup {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+
+  .room-gallery .rg-setup {
+    width: 33.333333%;
+  }
+}
+.room-gallery .rg-image-options {
+  position: relative;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background-color: rgba(0,0,0,.15);
-  padding: 1rem;
-  opacity: 0;
-  --tw-backdrop-blur: blur(8px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-    transition: opacity var(--transition-time);
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+.room-gallery .rg-image-options-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 .room-gallery .rg-ratio-change {
   display: flex;
@@ -704,7 +740,6 @@ video {
   width: 100%;
   font-size: 0.75rem;
   font-weight: 600;
-  color: rgba(255,255,255,1);
 }
 .rg-pictures {
   position: relative;

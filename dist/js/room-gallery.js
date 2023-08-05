@@ -37,9 +37,8 @@ createApp({
 
             pictures: [
                 {
-                    name: '',
-                    width: 40,
-                    height: 60,
+                    name: 'Fall of my Head',
+                    o: 'portrait',
                     image: 'no-head.jpg'
                 }
             ],
@@ -53,6 +52,12 @@ createApp({
             },
             pictureIndex: 0,
             pictureRatioNum: 1,
+
+            pictureConfig: {
+                sizes: [80, 60, 50, 40, 30],
+                ratios: [1.5],
+                orientations: ['portrait', 'landscape']
+            },
 
             setRatio() {
                 let r = this.ratio.split('/');

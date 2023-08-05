@@ -12,108 +12,117 @@
 <body>
 <div id="room-gallery" class="room-gallery">
     <div class="rg-wrapper">
-        <div id="rg-room"
-             class="rg-room"
-             :class="'r-' + ratio"
-             :style="{backgroundImage: 'url(' + imageSrc + ')'}"
-             @mouseup="finishDrag()"
-             @mouseleave="finishDrag()"
-             @mousemove="moveOnRoom($event);">
-            <div id="rg-meter"
-                 class="rg-meter"
-                 :style="{
-                    width: meter.w + '%',
-                    left: meter.x + '%',
-                    top: meter.y + '%',
-                 }"
-                 @mousedown="meterDragStart($event, index)">
-                <div class="inner">
-                    <button class="text">{{meterValue}} cm</button>
-                    <div class="resize">
-                        <div class="rs lt" @mousedown="meterResizeStart($event,'lt')"></div>
-                        <div class="rs rt" @mousedown="meterResizeStart($event,'rt')"></div>
-                        <div class="rs lb" @mousedown="meterResizeStart($event,'lb')"></div>
-                        <div class="rs rb" @mousedown="meterResizeStart($event,'rb')"></div>
+        <div class="rg-room-wrapper">
+            <div id="rg-room"
+                 class="rg-room"
+                 :class="'r-' + ratio"
+                 :style="{backgroundImage: 'url(' + imageSrc + ')'}"
+                 @mouseup="finishDrag()"
+                 @mouseleave="finishDrag()"
+                 @mousemove="moveOnRoom($event);">
+                <div id="rg-meter"
+                     class="rg-meter"
+                     :style="{
+                        width: meter.w + '%',
+                        left: meter.x + '%',
+                        top: meter.y + '%',
+                     }"
+                     @mousedown="meterDragStart($event, index)">
+                    <div class="inner">
+                        <button class="text">{{meterValue}} cm</button>
+                        <div class="resize">
+                            <div class="rs lt" @mousedown="meterResizeStart($event,'lt')"></div>
+                            <div class="rs rt" @mousedown="meterResizeStart($event,'rt')"></div>
+                            <div class="rs lb" @mousedown="meterResizeStart($event,'lb')"></div>
+                            <div class="rs rb" @mousedown="meterResizeStart($event,'rb')"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="rg-room-picture-wrapper"
-                 :style="{
-                    width: picture.width * (meter.w / meterValue) + '%',
-                    left: picture.x + '%',
-                    top: picture.y + '%',
-                 }"
-                 @mousedown="pictureDragStart($event)">
-                <div class="rg-room-picture"
+                <div class="rg-room-picture-wrapper"
                      :style="{
-                        paddingBottom: picture.height/picture.width * 100 + '%',
-                        backgroundImage: 'url(img/' + picture.image + ')'
-                     }">
+                        width: picture.width * (meter.w / meterValue) + '%',
+                        left: picture.x + '%',
+                        top: picture.y + '%',
+                     }"
+                     @mousedown="pictureDragStart($event)">
+                    <div class="rg-room-picture"
+                         :style="{
+                            paddingBottom: picture.height/picture.width * 100 + '%',
+                            backgroundImage: 'url(img/' + picture.image + ')'
+                         }">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="rg-setup">
-            <div class="rg-ratio-change">
-                <div class="rg-input">
-                    <label class="label" for="rg-ratio">Ratio</label>
-                    <select id="rg-ratio"
-                            class="rg-select"
-                            name="rg-ratio"
-                            v-model="ratio"
-                            @change="setRatio($event)">
-                        <option v-for="r in ratios"
-                                :value="r">
-                            {{r}}
-                        </option>
-                    </select>
+            <div class="rg-image-options">
+                <div class="rg-image-options-group">
+                    <div class="rg-ratio-change">
+                        <div class="rg-input">
+                            <label class="label" for="rg-ratio">Ratio</label>
+                            <select id="rg-ratio"
+                                    class="rg-select"
+                                    name="rg-ratio"
+                                    v-model="ratio"
+                                    @change="setRatio($event)">
+                                <option v-for="r in ratios"
+                                        :value="r">
+                                    {{r}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="rg-perspective-change" v-if="showPerspectiveChanger">
+                        <div class="rg-input">
+                            <label class="label" for="rg-perspective">Perspective type</label>
+                            <select id="rg-perspective"
+                                    class="rg-select"
+                                    name="rg-ratio"
+                                    v-model="perspective">
+                                <option v-for="p in perspectives"
+                                        :value="p">
+                                    {{p}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="rg-meter-value-input">
+                    <div class="rg-input">
+                        <label class="label" for="rg-meter-value">Square (cm)</label>
+                        <input id="rg-meter-value"
+                               class="rg-input-text w-20"
+                               type="text"
+                               v-model="meterValue">
+                    </div>
                 </div>
-            </div>
-            <div class="rg-perspective-change" v-if="showPerspectiveChanger">
-                <div class="rg-input">
-                    <label class="label" for="rg-perspective">Perspective type</label>
-                    <select id="rg-perspective"
-                            class="rg-select"
-                            name="rg-ratio"
-                            v-model="perspective">
-                        <option v-for="p in perspectives"
-                                :value="p">
-                            {{p}}
-                        </option>
-                    </select>
                 </div>
-            </div>
-            <div class="rg-meter-value-input">
-                <div class="rg-input">
-                    <label class="label" for="rg-meter-value">Square (cm)</label>
-                    <input id="rg-meter-value"
-                           class="rg-input-text w-20"
-                           type="text"
-                           v-model="meterValue">
-                </div>
-            </div>
-            <div class="rg-load-image">
-                <div class="rg-input">
-                    <span class="label"></span>
-                    <label for="rg-room-image"
-                           class="rg-button">
-                        Photo
-                    </label>
-                    <input id="rg-room-image"
-                           type="file" name=""
-                           accept="image/png, image/jpeg"
-                           @change="readImage($event)">
-                </div>
-            </div>
-            <div class="rg-reset">
+                <div class="rg-image-options-group">
+                    <div class="rg-load-image">
+                        <div class="rg-input">
+                            <span class="label">Room Photo</span>
+                            <label for="rg-room-photo"
+                                   class="rg-button rg-button-photo">
+                                Upload<br>Photo
+                            </label>
+                            <input id="rg-room-photo"
+                                   type="file" name=""
+                                   accept="image/png, image/jpeg"
+                                   @change="readImage($event)">
+                        </div>
+                    </div>
+                    <div class="rg-reset">
                 <div class="rg-input">
                     <span class="label"></span>
                     <button class="rg-button" @click="reset()">
-                        Reset
+                        Reset<br>Square
                     </button>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="rg-pictures">
         <div class="rg-picture-container">
             <div class="rg-picture"

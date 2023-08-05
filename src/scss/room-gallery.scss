@@ -4,7 +4,7 @@
 
 .room-gallery {
   .rg-wrapper {
-    @apply w-full relative flex flex-row overflow-hidden;
+    @apply w-full relative flex flex-row flex-wrap overflow-hidden;
     &:hover {
       .rg-setup,
       .rg-meter {
@@ -13,11 +13,16 @@
     }
   }
   .rg-button {
-    @apply bg-primary h-10 px-4 py-2 text-center flex justify-center items-center rounded-lg cursor-pointer;
+    @apply bg-primary h-10 px-4 py-2 text-center flex justify-center items-center rounded-lg cursor-pointer text-12px font-semibold;
+    line-height: 1;
+    &-photo {
+      @apply flex justify-center items-center text-center;
+    }
   }
 
   .rg-select {
     @apply p-2 rounded-lg outline-none;
+    background-image: linear-gradient(to bottom, #EEEEEE, #CCCCCC);
     &:active,
     &:focus {
       @apply outline-none;
@@ -26,46 +31,59 @@
 
   .rg-input-text {
     @apply p-2 rounded-lg outline-none;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, .2);
     &:active,
     &:focus {
       @apply outline-none;
     }
   }
 
+  .rg-room-wrapper {
+    @apply relative;
+    @apply w-full;
+    @apply lg:w-2/3;
+  }
+
   .rg-room {
-    @apply w-full h-0 relative bg-lightgrey bg-center bg-no-repeat;
+    @apply h-0 relative bg-lightgrey bg-no-repeat;
+    @apply w-full;
     background-size: 100%;
+    background-position: center 0;
     &.r-21\/9 {
       @apply pb-9/21;
     }
     &.r-18\/9 {
       @apply pb-1/2;
     }
-
     &.r-16\/10 {
       @apply pb-10/16;
     }
-
     &.r-16\/9 {
       @apply pb-9/16;
     }
-
     &.r-4\/3 {
       @apply pb-3/4;
     }
-
     &.r-3\/2 {
       @apply pb-2/3;
     }
-
     &.r-1\/1 {
       @apply pb-1/1;
     }
   }
 
   .rg-setup {
-    @apply opacity-0 absolute top-0 left-0 p-4 flex justify-center items-center gap-4 flex-wrap bg-black-15 w-full backdrop-blur;
-    transition: opacity var(--transition-time);
+    @apply relative flex justify-center items-start gap-2 flex-wrap;
+    @apply w-full;
+    @apply lg:w-1/3;
+  }
+
+  .rg-image-options {
+    @apply relative w-full flex justify-start items-center gap-2 p-2 flex-wrap;
+  }
+
+  .rg-image-options-group {
+    @apply relative flex justify-start items-center gap-2;
   }
 
   .rg-ratio-change {
@@ -114,7 +132,7 @@
   .rg-input {
     @apply flex flex-col justify-start items-start;
     .label {
-      @apply block w-full h-4 mb-2 text-12px font-semibold text-white;
+      @apply block w-full h-4 mb-2 text-12px font-semibold;
     }
   }
 }
